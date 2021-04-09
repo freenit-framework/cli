@@ -27,7 +27,11 @@ module.exports = {
       const port = server.listeningApp.address().port
       const host = process.env.HOST || 'localhost'
       const address = `http://${host}:${port}`
-      console.log('Listening on:', address)
+      console.clear()
+      console.log()
+      console.log()
+      console.log('   Listening on:', address)
+      console.log()
     },
   },
   module: {
