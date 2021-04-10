@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 const path = require('path')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
-const webpack_config = {
+const webpackConfig = {
   entry: './src/index.js',
   mode: isDevelopment ? 'development' : 'production',
   output: {
@@ -24,7 +25,7 @@ const webpack_config = {
     liveReload: false,
     historyApiFallback: true,
     onListening: function onListening(server) {
-      const port = server.listeningApp.address().port
+      const { port } = server.listeningApp.address()
       const host = process.env.HOST || 'localhost'
       const address = `http://${host}:${port}`
       console.clear()
@@ -37,31 +38,29 @@ const webpack_config = {
   module: {
     rules: [
       {
+        enforce: 'pre',
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-            presets: [
-              '@babel/preset-react',
-              '@babel/preset-env'
-            ],
-            plugins: [
-              '@babel/plugin-proposal-object-rest-spread',
-              '@babel/plugin-transform-react-jsx',
-              '@babel/plugin-proposal-class-properties',
-              isDevelopment && require.resolve('react-refresh/babel'),
-            ]
-          }
-        }
-      }
-    ]
+        loader: 'eslint-loader',
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          cacheDirectory: true,
+          presets: ['@babel/preset-react', '@babel/preset-env'],
+          plugins: [
+            '@babel/plugin-proposal-object-rest-spread',
+            '@babel/plugin-transform-react-jsx',
+            '@babel/plugin-proposal-class-properties',
+            isDevelopment && require.resolve('react-refresh/babel'),
+          ],
+        },
+      },
+    ],
   },
-  plugins: [
-    isDevelopment && new ReactRefreshWebpackPlugin(),
-  ].filter(Boolean),
+  plugins: [isDevelopment && new ReactRefreshWebpackPlugin()].filter(Boolean),
 }
 
-
-module.exports = webpack_config
+module.exports = webpackConfig

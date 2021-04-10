@@ -1,9 +1,4 @@
-const webpack_config = require('./webpack-config')
 const _ = require('lodash')
+const webpackConfig = require('./webpack-config')
 
-
-module.exports = _.merge(
-  webpack_config,
-  {
-  }
-)
+module.exports = _.merge(webpackConfig, {})
