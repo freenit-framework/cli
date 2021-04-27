@@ -1,33 +1,32 @@
 /* eslint-disable no-console */
 const path = require('path')
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 const webpackConfig = {
   entry: './src/index.js',
   mode: isDevelopment ? 'development' : 'production',
+  infrastructureLogging: {
+    appendOnly: true,
+    level: 'warn',
+  },
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    clientLogLevel: 'silent',
     port: 3000,
     host: '0.0.0.0',
-    disableHostCheck: true,
     hot: true,
-    noInfo: true,
-    inline: true,
-    watchContentBase: true,
-    liveReload: false,
     historyApiFallback: true,
+    watchFiles: ['src/**/.js'],
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
     onListening: function onListening(server) {
-      const { port } = server.listeningApp.address()
       const host = process.env.HOST || 'localhost'
-      const address = `http://${host}:${port}`
+      const address = `http://${host}:${server.port}`
       console.clear()
       console.log()
       console.log()
@@ -54,13 +53,11 @@ const webpackConfig = {
             '@babel/plugin-proposal-object-rest-spread',
             '@babel/plugin-transform-react-jsx',
             '@babel/plugin-proposal-class-properties',
-            isDevelopment && require.resolve('react-refresh/babel'),
           ],
         },
       },
     ],
   },
-  plugins: [isDevelopment && new ReactRefreshWebpackPlugin()].filter(Boolean),
 }
 
 module.exports = webpackConfig
