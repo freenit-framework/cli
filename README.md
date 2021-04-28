@@ -1,2 +1,7 @@
-# frontend-startkit
-My discovery of how webpack works
+# Freenit Framework CLI
+
+This repo provides default configuration Freenit frontend is using for the following:
+* ESLint
+* Prettier
+* Babel
+* WebPack
