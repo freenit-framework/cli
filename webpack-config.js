@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const path = require('path')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -7,7 +8,7 @@ const webpackConfig = {
   entry: './src/index.js',
   mode: isDevelopment ? 'development' : 'production',
   infrastructureLogging: {
-    appendOnly: true,
+    appendOnly: false,
     level: 'warn',
   },
   output: {
@@ -34,26 +35,15 @@ const webpackConfig = {
       console.log()
     },
   },
+  plugins: [new ESLintPlugin()],
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
-          presets: ['@babel/preset-react', '@babel/preset-env'],
-          plugins: [
-            '@babel/plugin-proposal-object-rest-spread',
-            '@babel/plugin-transform-react-jsx',
-            '@babel/plugin-proposal-class-properties',
-          ],
         },
       },
     ],

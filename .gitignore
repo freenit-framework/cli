@@ -3,3 +3,4 @@ dist/*
 !dist/index.html
 *.lock
 stats.html
+project.mk
