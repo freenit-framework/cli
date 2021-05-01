@@ -6,7 +6,6 @@ import visualizer from 'rollup-plugin-visualizer'
 import json from '@rollup/plugin-json'
 import pkg from './package.json'
 
-
 export default {
   input: './lib.js',
   output: [
@@ -15,7 +14,7 @@ export default {
       format: 'cjs',
       sourcemap: true,
       exports: 'default',
-    }
+    },
   ],
   plugins: [
     json(),
@@ -24,6 +23,5 @@ export default {
     commonjs({ ignoreDynamicRequires: true }),
     image(),
     visualizer(),
-  ]
+  ],
 }
-

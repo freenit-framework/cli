@@ -6,6 +6,7 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 
 const webpackConfig = {
   entry: './index.js',
+  context: path.resolve(__dirname, 'src'),
   mode: isDevelopment ? 'development' : 'production',
   infrastructureLogging: {
     appendOnly: false,
