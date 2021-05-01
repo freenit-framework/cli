@@ -21,7 +21,7 @@ export default {
     json(),
     external(),
     resolve(),
-    commonjs(),
+    commonjs({ ignoreDynamicRequires: true }),
     image(),
     visualizer(),
   ]
