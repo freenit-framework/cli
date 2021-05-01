@@ -5,7 +5,7 @@ const ESLintPlugin = require('eslint-webpack-plugin')
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 const webpackConfig = {
-  entry: './src/index.js',
+  entry: './index.js',
   mode: isDevelopment ? 'development' : 'production',
   infrastructureLogging: {
     appendOnly: false,
@@ -47,6 +47,9 @@ const webpackConfig = {
         },
       },
     ],
+  },
+  resolve: {
+    preferRelative: true,
   },
 }
 
