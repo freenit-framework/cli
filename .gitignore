@@ -1,5 +1,6 @@
 node_modules
 dist/*
+!dist/favicon.ico
 !dist/index.html
 *.lock
 stats.html

@@ -18,6 +18,7 @@ const webpackConfig = {
   },
   devServer: {
     compress: true,
+    firewall: false,
     port: 3000,
     host: '0.0.0.0',
     hot: true,
