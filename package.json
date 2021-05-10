@@ -1,6 +1,6 @@
 {
   "name": "@freenit-framework/cli",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Default configuration for Freenit",
   "main": "dist/index.cjs.js",
   "license": "BSD-2-Clause",
@@ -34,7 +34,7 @@
     "prettier": "^2.2.1",
     "webpack": "^5.35.1",
     "webpack-cli": "^4.6.0",
-    "webpack-dev-server": "^4.0.0-beta.2"
+    "webpack-dev-server": "^4.0.0-beta.3"
   },
   "scripts": {
     "start": "webpack serve",

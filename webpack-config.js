@@ -55,4 +55,7 @@ const webpackConfig = {
   },
 }
 
+if (isDevelopment) {
+  webpackConfig.devtool = 'inline-source-map'
+}
 module.exports = webpackConfig
