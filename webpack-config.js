@@ -1,17 +1,23 @@
 /* eslint-disable no-console */
 const path = require('path')
 const ESLintPlugin = require('eslint-webpack-plugin')
+const ClearTerminalPlugin = require('clean-terminal-webpack-plugin')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
+const address = {
+  host: process.env.HOST || 'localhost',
+  port: 3000,
+}
 
 const webpackConfig = {
+  stats: 'errors-warnings',
   entry: './index.js',
   context: path.resolve(__dirname, 'src'),
   mode: isDevelopment ? 'development' : 'production',
-  infrastructureLogging: {
-    appendOnly: false,
-    level: 'warn',
-  },
+  // infrastructureLogging: {
+  // appendOnly: false,
+  // level: 'warn',
+  // },
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
@@ -19,7 +25,7 @@ const webpackConfig = {
   devServer: {
     compress: true,
     firewall: false,
-    port: 3000,
+    port: address.port,
     host: '0.0.0.0',
     hot: true,
     historyApiFallback: true,
@@ -28,16 +34,15 @@ const webpackConfig = {
       directory: path.join(__dirname, 'dist'),
     },
     onListening: function onListening(server) {
-      const host = process.env.HOST || 'localhost'
-      const address = `http://${host}:${server.port}`
-      console.clear()
-      console.log()
-      console.log()
-      console.log('   Listening on:', address)
-      console.log()
+      address.port = server.port
     },
   },
-  plugins: [new ESLintPlugin()],
+  plugins: [
+    new ESLintPlugin(),
+    new ClearTerminalPlugin({
+      message: `\n\n    Location: http://${address.host}:${address.port}`,
+    }),
+  ],
   module: {
     rules: [
       {
