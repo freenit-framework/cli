@@ -7,15 +7,15 @@ const addr = {
   port: 3000,
 }
 
-function generateConfig(address = addr) {
+function generateConfig(dirname, address = addr) {
   const isDevelopment = process.env.NODE_ENV !== 'production'
   const webpackConfig = {
     stats: 'errors-warnings',
     entry: './index.js',
-    context: path.resolve(__dirname, 'src'),
+    context: path.resolve(dirname, 'src'),
     mode: isDevelopment ? 'development' : 'production',
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(dirname, 'dist'),
     },
     devServer: {
       compress: true,
@@ -26,7 +26,7 @@ function generateConfig(address = addr) {
       historyApiFallback: true,
       watchFiles: ['src/**/.js'],
       static: {
-        directory: path.join(__dirname, 'dist'),
+        directory: path.join(dirname, 'dist'),
       },
     },
     plugins: [
