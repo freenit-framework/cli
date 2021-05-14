@@ -61,6 +61,6 @@ const webpackConfig = {
 }
 
 if (isDevelopment) {
-  webpackConfig.devtool = 'inline-source-map'
+  webpackConfig.devtool = 'cheap-module-source-map'
 }
 module.exports = webpackConfig
