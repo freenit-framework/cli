@@ -8,13 +8,16 @@ const addr = {
   port: 3000,
 }
 
-const generateConfig = (address = addr) => {
+function generateConfig(address = addr) {
   const isDevelopment = process.env.NODE_ENV !== 'production'
   const webpackConfig = {
     stats: 'errors-warnings',
     entry: './index.js',
     context: path.resolve(__dirname, 'src'),
     mode: isDevelopment ? 'development' : 'production',
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+    },
     devServer: {
       compress: true,
       firewall: false,
