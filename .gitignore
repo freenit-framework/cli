@@ -1,7 +1,5 @@
 node_modules
-dist/*
-!dist/favicon.ico
-!dist/index.html
+dist
 *.lock
 stats.html
 project.mk

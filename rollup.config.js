@@ -20,7 +20,9 @@ export default {
   plugins: [
     json(),
     external(),
-    resolve(),
+    resolve({
+      preferBuiltins: true,
+    }),
     terser(),
     commonjs({ ignoreDynamicRequires: true }),
     image(),
