@@ -1,6 +1,6 @@
 {
   "name": "@freenit-framework/cli",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Default configuration for Freenit",
   "main": "dist/index.cjs.js",
   "license": "BSD-2-Clause",
@@ -34,7 +34,6 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-webpack-plugin": "^2.5.4",
-    "html-webpack-plugin": "^5.3.1",
     "prettier": "^2.2.1",
     "webpack": "^5.35.1",
     "webpack-cli": "^4.6.0",

@@ -1,5 +1,4 @@
 const path = require('path')
-const HtmlPlugin = require('html-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const ClearTerminalPlugin = require('clean-terminal-webpack-plugin')
 
@@ -31,9 +30,6 @@ function generateConfig(address = addr) {
       },
     },
     plugins: [
-      new HtmlPlugin({
-        template: path.resolve(__dirname, 'src/index.html'),
-      }),
       new ESLintPlugin(),
       new ClearTerminalPlugin({
         message: `\n\n    Location: http://${address.host}:${address.port}`,
