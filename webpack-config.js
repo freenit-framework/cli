@@ -2,26 +2,19 @@ const path = require('path')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const ClearTerminalPlugin = require('clean-terminal-webpack-plugin')
 
-let env
-try {
-  env = process.env
-} catch (error) {
-  env = {}
-}
-
+const env = process && process.env ? process.env : {}
 const addr = {
   host: env.HOST || 'localhost',
   port: 3000,
 }
 
 function generateConfig(dirname, address = addr) {
-  const mode = env.NODE_ENV || 'none'
-  const isDevelopment = mode !== 'production'
+  const isDevelopment = env.NODE_ENV !== 'production'
   const webpackConfig = {
-    mode,
     stats: 'errors-warnings',
     entry: './index.js',
     context: path.resolve(dirname, 'src'),
+    mode: isDevelopment ? 'development' : 'production',
     output: {
       path: path.resolve(dirname, 'dist'),
     },
@@ -60,7 +53,7 @@ function generateConfig(dirname, address = addr) {
     },
   }
 
-  if (isDevelopment && mode !== 'none') {
+  if (isDevelopment) {
     webpackConfig.devtool = 'cheap-module-source-map'
   }
   return webpackConfig
