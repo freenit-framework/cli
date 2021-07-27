@@ -20,7 +20,6 @@ function generateConfig(dirname, address = addr) {
     },
     devServer: {
       compress: true,
-      firewall: false,
       port: address.port,
       host: '0.0.0.0',
       hot: true,

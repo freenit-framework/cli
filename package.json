@@ -1,6 +1,6 @@
 {
   "name": "@freenit-framework/cli",
-  "version": "0.0.21",
+  "version": "0.0.23",
   "description": "Default configuration for Freenit",
   "main": "dist/index.cjs.js",
   "license": "BSD-2-Clause",
